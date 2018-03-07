@@ -2,85 +2,9 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    
     <Button type="primary" @click="postData()">Primary</Button>
+    <Button type="ghost" @click="getData()">Ghost</Button>
   </div>
 </template>
 
@@ -89,20 +13,25 @@
 export default {
   name: 'HelloWorld',
   data () {
+
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
   methods:{
-    postData () {
-      console.log('HelloWorld');
-      this.$http({
-        method: 'get',
-        header: 'Access-Control-Allow-Origin',
-        url: 'http://localhost:8989/test',
-        data: {
-          
-        }
+    getData () {
+      var _this = this;
+      this.$http.get('http://localhost:9000/test',{params:{
+        data:'hah'
+      }}).then(function(respone){
+        console.log(respone);
+        _this.msg = respone.data;
+
+      })
+    },
+    postData(){
+      this.$http.post('http://localhost:9000/user',{firstName:'hello',lastName:'world'}).then(function(respone){
+        console.log(respone)
       })
     }
   }
