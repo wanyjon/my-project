@@ -11,7 +11,9 @@ import VueAxios from 'vue-axios'
 
 Vue.use(iView,VueAxios,axios);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.prototype.$http = axios;
 
 /* eslint-disable no-new */
 new Vue({

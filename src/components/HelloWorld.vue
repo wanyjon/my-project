@@ -80,15 +80,30 @@
         </a>
       </li>
     </ul>
+    <Button type="primary" @click="postData()">Primary</Button>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods:{
+    postData () {
+      console.log('HelloWorld');
+      this.$http({
+        method: 'get',
+        header: 'Access-Control-Allow-Origin',
+        url: 'http://localhost:8989/test',
+        data: {
+          
+        }
+      })
     }
   }
 }
