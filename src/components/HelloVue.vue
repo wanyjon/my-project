@@ -48,7 +48,7 @@
                     </div>
                 </Menu>
             </Header>
-            <Layout>
+          <!--   <Layout>
                 <Sider hide-trigger :style="{background: '#fff'}">
                     <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
                         <Submenu name="1">
@@ -89,7 +89,7 @@
 
                     </Content>
                 </Layout>
-            </Layout>
+            </Layout> -->
         </Layout>
     </div>
 </template>

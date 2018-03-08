@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import HelloVue from '@/components/HelloVue'
 import test from '@/components/test'
 import HelloIview from '@/components/HelloIview'
+import demo from '@/components/demo'
 
 
 Vue.use(Router)
@@ -34,6 +35,14 @@ export default new Router({
     			component: HelloIview
     		}
     	]
+    },
+    {
+        path: '/test',
+        component: test,
+    },
+    {
+        path: '/demo',
+        component: demo
     }
   ]
 })

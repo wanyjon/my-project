@@ -18,11 +18,21 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   color: #2c3e50;
   margin-top: 0px;
 }
 a{
   color: #000000
 }
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+body
+  { 
+  /*background-image: url(./assets/back.jpg);*/
+  /*background-attachment:fixed;*/
+  /*background-color: #000000;*/
+  }
 </style>
