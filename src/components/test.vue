@@ -1,10 +1,18 @@
 <template>
-	<div>
-		<h1>im test</h1>
-	</div>
+    <Page :total="50" show-total @on-change="change"></Page>
 </template>
-<script type="text/javascript">
-	export default {
+<script>
+    export default {
+    	data(){
+    		return {
+    		}
+    	},
+    	methods: {
+    		change (page) {
+            console.log(page)
+        }
+    	}
 
-	}
+        
+    }
 </script>
