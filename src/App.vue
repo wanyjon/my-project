@@ -25,4 +25,14 @@ export default {
 a{
   color: #000000
 }
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+body
+  { 
+  /*background-image: url(./assets/back.jpg);*/
+  /*background-attachment:fixed;*/
+  /*background-color: #000000;*/
+  }
 </style>

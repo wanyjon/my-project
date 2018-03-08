@@ -34,6 +34,10 @@ export default new Router({
     			component: HelloIview
     		}
     	]
+    },
+    {
+        path: '/test',
+        component: test,
     }
   ]
 })
