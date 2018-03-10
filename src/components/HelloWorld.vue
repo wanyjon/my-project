@@ -1,67 +1,59 @@
 <template>
   <div class="hello">
-    <Affix>
+
+    <!-- <Affix> -->
     <Row>
-      
-      <div class="layout">
-        <Layout>
-            <Header>
-                <Menu mode="horizontal" theme="dark" active-name="1">
-                    <div class="layout-logo"></div>
-                    <div class="layout-nav">
-                        <MenuItem name="1">
-                            <Icon type="ios-navigate"></Icon>
-                            Item 1
-                        </MenuItem>
-                        <MenuItem name="2">
-                            <Icon type="ios-keypad"></Icon>
-                            Item 2
-                        </MenuItem>
-                        <MenuItem name="3">
-                            <Icon type="ios-analytics"></Icon>
-                            Item 3
-                        </MenuItem>
-                        <MenuItem name="4">
-                            <Icon type="ios-paper"></Icon>
-                            Item 4
-                        </MenuItem>
-                    </div>
-                </Menu>
-            </Header>
-        </Layout>
-      </div>
-      
+      <Col align="center">
+        <div style="margin-top: 15px;margin-bottom: 15px">
+          <Page :total="total" @on-change="pageSwitch" show-total :current="page"></Page>
+        </div>
+        
+      </Col>
     </Row>
-    </Affix>
-    <!-- <Row>
-        <Col span="12"><h1>{{ msg }}</h1></Col>
-        <Col span="12"><h2>Essential Links</h2></Col>
-    </Row> -->
-    <!-- <br> -->
     <Row >
-        <Col span="12" v-for="item in items" align="center" style="margin-top: 15px;margin-bottom: 15px">
+        <Col span="12" align="center" offset="6">
           <!-- <img :src="img"> -->
-          <Card style="width:320px" >
-            <div style="text-align:center">
-              <img :src="item.imgUrl" width="120" height="160" >
-              <h3>{{item.name}}</h3>
-            </div>
-          </Card>
+          <Row>
+            <Col span="12" v-for="item in items"style="margin-top: 15px;margin-bottom: 15px">
+
+              <Card :bordered="false" dis-hover>
+
+                <div style="text-align:center">
+
+                  <Row>
+                    <Col span="12">
+                      <img :src="item.imgUrl" width="120px" height="160px">
+                    </Col>
+                    <Col align="left">
+                      <div>
+                        <router-link :to="{params:{obj:item},name:'HelloVue'}"><h3 style="color: #2d8cf0">{{item.name}}</h3></router-link>
+                        <p>状态：{{item.status}}</p>
+                        <p>{{item.formerly}}</p>
+                        <p>{{item.alias}}</p>
+                        <p>{{item.tvstation}}</p>
+                        <p>年份：{{item.year}}年</p>
+                        <p>{{item.classify}}</p>
+                      </div>
+                      
+                    </Col>
+                  </Row>
+                  
+                  
+
+                </div>
+            </Card>
+            </Col>
+          </Row>
         </Col>
-        <!-- <Col span="8"><Page :total="100"></Page></Col> -->
-        <!-- <Col span="8">col-8</Col> -->
     </Row>
     <!-- <br> -->
     <Row>
-      <Col>
-        <Page :total="total" @on-change="pageSwitch" show-total></Page>
+      <Col align="center">
+        <Page :total="total" @on-change="pageSwitch" show-total :current="page"></Page>
       </Col>
     </Row>
     <Row>
-        <Col span="12"><Button type="primary" @click="postData()">Primary</Button></Col>
-        <!-- <Col span="6"></Col> -->
-        <!-- <Col span="6"></Col> -->
-        <Col span="12"><Button type="ghost" @click="getData()">Ghost</Button></Col>
+       
     </Row>
   
   </div>
@@ -78,52 +70,56 @@ export default {
       img: 'http://img.kukan5.com:808/pic/uploadimg/2016-11/338.jpg',
       items:[],
       total:0,
+      page:1
+      // to: ''
     }
   },
   methods:{
     getData () {
       var _this = this;
-      this.$http.get('http://localhost:8989/findAll/1/10',{params:{
+      this.$http.get('http://192.168.0.84:8989/findAll/1/10',{params:{
         data:'hah'
       }}).then(function(respone){
         console.log(respone);
-        _this.msg = respone.data.size;
-        _this.img = respone.data.content[0].imgUrl;
-        _this.items = respone.data.content;
-        _this.total = respone.data.totalElements;
+        _this.msg = respone.data.totalPage;
+        _this.img = respone.data.list[0].imgUrl;
+        _this.items = respone.data.list;
+        _this.total = respone.data.totalCount;
 
       })
     },
     postData(){
-      this.$http.post('http://localhost:9000/user',{firstName:'hello',lastName:'world'}).then(function(respone){
+      this.$http.post('http://192.168.0.84:9000/user',{firstName:'hello',lastName:'world'}).then(function(respone){
         console.log(respone)
       })
     },
     pageSwitch(page){
-      console.log('http://localhost:8989/findAll/'+page+'/10')
+      console.log('http://192.168.0.84:8989/findAll/'+page+'/10')
       var _this = this;
-      this.$http.get('http://localhost:8989/findAll/'+page+'/10',{params:{
+      this.$http.get('http://192.168.0.84:8989/findAll/'+page+'/10',{params:{
         data:'hah'
       }}).then(function(respone){
         console.log(respone);
-        _this.msg = respone.data.size;
-        _this.img = respone.data.content[0].imgUrl;
-        _this.items = respone.data.content;
-        _this.total = respone.data.totalElements;
+        _this.msg = respone.data.totalPage;
+        _this.img = respone.data.list[0].imgUrl;
+        _this.items = respone.data.list;
+        _this.total = respone.data.totalCount;
+        _this.page = page;
 
       })
     }
   },
   created: function(){
       var _this = this;
-      this.$http.get('http://localhost:8989/findAll/1/10',{params:{
+      this.$http.get('http://192.168.0.84:8989/findAll/1/10',{params:{
         data:'hah'
       }}).then(function(respone){
         console.log(respone);
-        _this.msg = respone.data.size;
-        _this.img = respone.data.content[0].imgUrl;
-        _this.items = respone.data.content;
-        _this.total = respone.data.totalElements;
+        _this.msg = respone.data.totalPage;
+        _this.img = respone.data.list[0].imgUrl;
+        _this.items = respone.data.list;
+        _this.total = respone.data.totalCount;
+        _this.to = '/foo/'+respone.data.list;
 
       })
   },

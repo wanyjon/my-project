@@ -39,7 +39,6 @@
 	       		 	<BreadcrumbItem>Breadcrumb</BreadcrumbItem>
     			</Breadcrumb>
 			</Col>
-			
 		</Row>
 		<Row>
 			<Col span="4" offset="3">
